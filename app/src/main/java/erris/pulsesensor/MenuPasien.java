@@ -117,10 +117,12 @@ public class MenuPasien extends AppCompatActivity
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("No", String.valueOf(i));
             hm.put("Nama", pasien.getNama());
+            hm.put("Berat Badan", Integer.toString(pasien.getBb()));
+            hm.put("Tinggi Badan", Integer.toString(pasien.getTinggi()));
             hm.put("Kelas Penyakit", pasien.getKelas_penyakit());
             hm.put("Kelas K-Means", pasien.getKelas_kmeans());
-            hm.put("Detak Jantung", String.valueOf(pasien.getDetak_jantung()));
-            hm.put("Kondisi Jantung", pasien.getKondisi_jantung());
+//            hm.put("Detak Jantung", String.valueOf(pasien.getDetak_jantung()));
+//            hm.put("Kondisi Jantung", pasien.getKondisi_jantung());
             fillMaps.add(hm);
             listId.add(pasien.getPasienId());
             i++;
@@ -130,8 +132,10 @@ public class MenuPasien extends AppCompatActivity
     }
 
     private void initializeListview() {
-        String[] from = new String[] {"No", "Nama", "Kelas Penyakit", "Kelas K-Means", "Detak Jantung", "Kondisi Jantung"};
-        int[] to = new int[] { R.id.no, R.id.nama, R.id.kelas_penyakit, R.id.kelas_kmeans, R.id.detak_jantung, R.id.kondisi_jantung};
+//        String[] from = new String[] {"No", "Nama", "Kelas Penyakit", "Kelas K-Means", "Detak Jantung", "Kondisi Jantung"};
+        String[] from = new String[] {"No", "Nama", "Berat Badan", "Tinggi Badan", "Kelas Penyakit", "Kelas K-Means"};
+//        int[] to = new int[] { R.id.no, R.id.nama, R.id.kelas_penyakit, R.id.kelas_kmeans, R.id.detak_jantung, R.id.kondisi_jantung};
+        int[] to = new int[] { R.id.no, R.id.nama, R.id.berat_badan, R.id.tinggi_badan, R.id.kelas_penyakit, R.id.kelas_kmeans};
         fillMaps = new ArrayList<HashMap<String, String>>();
         adapter = new SimpleAdapter(this, fillMaps, R.layout.grid_pasien, from, to);
         listView.setAdapter(adapter);
