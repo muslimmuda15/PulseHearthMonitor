@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "218855239562",
+    "firebase_url": "https://pulsesensor-8892f.firebaseio.com",
+    "project_id": "pulsesensor-8892f",
+    "storage_bucket": "pulsesensor-8892f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218855239562:android:52421b3f0ceb524b",
+        "android_client_info": {
+          "package_name": "erris.pulsesensor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218855239562-r3u0getior9nqv7ot1p4eou3gfv2usau.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "erris.pulsesensor",
+            "certificate_hash": "2e82faa336de891ca9347afbc543265a00089b88"
+          }
+        },
+        {
+          "client_id": "218855239562-ircd9vk0fbjer2tiugmau889cr712oes.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX4tJV2NIA2_s5f2MvhzkKVgLkUgg8Iak"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218855239562-ircd9vk0fbjer2tiugmau889cr712oes.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
