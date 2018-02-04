@@ -26,7 +26,8 @@
         <activity
             android:name=".MenuPasien"
             android:label="@string/title_activity_menu_pasien"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".RekamMedis"></activity>
     </application>
 
