@@ -145,10 +145,10 @@ public class TambahPasien extends AppCompatActivity {
             String keluhan = txtKeluhan.getText().toString();
 
             if(laki.isChecked()){
-                jenisKelamin = "Laki-laki";
+                jenisKelamin = "L";
             }
             else if(perempuan.isChecked()){
-                jenisKelamin = "Perempuan";
+                jenisKelamin = "P";
             }
 
             nilai_pjk = 0; nilai_pja = 0;
@@ -238,9 +238,9 @@ public class TambahPasien extends AppCompatActivity {
             }
             else {
                 if (nilai_pjk >= nilai_pja) {
-                    kp = "PJK";
+                    kp = "Koroner";
                 } else {
-                    kp = "PJA";
+                    kp = "Aritmia";
                 }
 
                 long tanggal = getTime();

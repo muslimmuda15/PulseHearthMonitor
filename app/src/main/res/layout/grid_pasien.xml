@@ -10,6 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center_horizontal"
         android:text="No" />
     <TextView
         android:id="@+id/nama"
@@ -23,13 +24,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Jenis Kelamin" />
+        android:gravity="center_horizontal"
+        android:text="L/P" />
 
     <TextView
         android:id="@+id/umur"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center_horizontal"
         android:text="Umur" />
 
     <TextView
@@ -37,13 +40,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Kelas Penyakit" />
+        android:gravity="center_horizontal"
+        android:text="Penyakit" />
 
     <TextView
         android:id="@+id/kelas_kmeans"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Kelas Kmeans" />
+        android:gravity="center_horizontal"
+        android:text="Kmeans" />
 
 </LinearLayout>
