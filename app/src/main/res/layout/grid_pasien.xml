@@ -19,18 +19,18 @@
         android:text="Nama" />
 
     <TextView
-        android:id="@+id/berat_badan"
+        android:id="@+id/jenis_kelamin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Kelas Penyakit" />
+        android:text="Jenis Kelamin" />
 
     <TextView
-        android:id="@+id/tinggi_badan"
+        android:id="@+id/umur"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Kelas KMeans" />
+        android:text="Umur" />
 
     <TextView
         android:id="@+id/kelas_penyakit"
@@ -44,6 +44,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Kelas Penyakit" />
+        android:text="Kelas Kmeans" />
 
 </LinearLayout>

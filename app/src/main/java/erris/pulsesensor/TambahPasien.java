@@ -2,6 +2,7 @@ package erris.pulsesensor;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,9 +24,12 @@ import erris.pulsesensor.kmeans.Kmeans;
 import erris.pulsesensor.models.Pasien;
 
 public class TambahPasien extends AppCompatActivity {
+    Context context = this;
 
     EditText txtNama, txtUmur, txtTinggi, txtBB, txtKeluhan;
     CheckBox chkX1, chkX2, chkX3, chkX4, chkX5, chkX6, chkX7, chkX8, chkX9, chkX10, chkX11;
+    RadioGroup kelamin;
+    RadioButton laki, perempuan;
     Button btnSimpan, btnHapus;
 
     int id;
@@ -84,6 +90,9 @@ public class TambahPasien extends AppCompatActivity {
         txtTinggi  = (EditText) findViewById(R.id.txtTinggiPasien);
         txtBB      = (EditText) findViewById(R.id.txtBbPasien);
         txtKeluhan = (EditText) findViewById(R.id.txtKeluhanPasien);
+        kelamin = (RadioGroup) findViewById(R.id.kelamin);
+        laki = (RadioButton) findViewById(R.id.laki);
+        perempuan = (RadioButton) findViewById(R.id.perempuan);
 
         chkX1     = (CheckBox) findViewById(R.id.chkX1);
         chkX2     = (CheckBox) findViewById(R.id.chkX2);
@@ -96,6 +105,8 @@ public class TambahPasien extends AppCompatActivity {
         chkX9     = (CheckBox) findViewById(R.id.chkX9);
         chkX10    = (CheckBox) findViewById(R.id.chkX10);
         chkX11    = (CheckBox) findViewById(R.id.chkX11);
+
+        laki.setChecked(true);
 
         btnSimpan = (Button) findViewById(R.id.btnSimpan);
         btnHapus  = (Button) findViewById(R.id.btnHapus);
@@ -124,12 +135,21 @@ public class TambahPasien extends AppCompatActivity {
             Dialog loadingDialog;
             loadingDialog = ProgressDialog.show(TambahPasien.this, "Harap Tunggu", "Menyimpan Data Pasien...");
             loadingDialog.setCanceledOnTouchOutside(true);
+            int kelaminChecked = kelamin.getCheckedRadioButtonId();
 
             String nama    = txtNama.getText().toString();
             int umur       = Integer.valueOf(txtUmur.getText().toString());
+            String jenisKelamin = "";
             int tinggi     = Integer.valueOf(txtTinggi.getText().toString());
             int bb         = Integer.valueOf(txtBB.getText().toString());
             String keluhan = txtKeluhan.getText().toString();
+
+            if(laki.isChecked()){
+                jenisKelamin = "Laki-laki";
+            }
+            else if(perempuan.isChecked()){
+                jenisKelamin = "Perempuan";
+            }
 
             nilai_pjk = 0; nilai_pja = 0;
             int x1 = 0;
@@ -213,27 +233,32 @@ public class TambahPasien extends AppCompatActivity {
             }
 
             String kp = "";
-            if ( nilai_pjk >= nilai_pja ) {
-                kp = "PJK";
-            } else {
-                kp = "PJA";
+            if(nilai_pjk == nilai_pja){
+                Toast.makeText(context, "Tolong centang salah satu penyakit", Toast.LENGTH_SHORT).show();
             }
+            else {
+                if (nilai_pjk >= nilai_pja) {
+                    kp = "PJK";
+                } else {
+                    kp = "PJA";
+                }
 
-            long tanggal = getTime();
+                long tanggal = getTime();
 
-            loadingDialog.dismiss();
+                loadingDialog.dismiss();
 
-            Pasien pasien = new Pasien("", nama, tanggal, umur, bb, tinggi, keluhan, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, kp, "", 0, "");
-            id = pasienTable.insert(pasien);
+                Pasien pasien = new Pasien("", nama, tanggal, umur, jenisKelamin, bb, tinggi, keluhan, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, kp, "", 0, "");
+                id = pasienTable.insert(pasien);
 
-//            if ( id > 0 ) {
-//                Toast.makeText(getBaseContext(), "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getBaseContext(), PulseMonitor.class);
-//                intent.putExtra("id", id);
-//                finish();
-//                startActivity(intent);
-//            }
-            finish();
+    //            if ( id > 0 ) {
+    //                Toast.makeText(getBaseContext(), "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
+    //                Intent intent = new Intent(getBaseContext(), PulseMonitor.class);
+    //                intent.putExtra("id", id);
+    //                finish();
+    //                startActivity(intent);
+    //            }
+                finish();
+            }
         }
     }
 

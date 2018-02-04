@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="10"
-            android:text="Berat Badan"
+            android:text="Jenis Kelamin"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="10"
-            android:text="Tinggi Badan"
+            android:text="Umur"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textStyle="bold" />

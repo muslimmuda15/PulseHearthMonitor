@@ -3,6 +3,7 @@ package erris.pulsesensor.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class PasienTable {
                 Pasien.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 Pasien.COLUMN_NAMA + " TEXT, " +
                 Pasien.COLUMN_TANGGAL + " TEXT, " +
+                Pasien.COLUMN_KELAMIN + " TEXT, " +
                 Pasien.COLUMN_UMUR + " NUMERIC, " +
                 Pasien.COLUMN_BB + " NUMERIC, " +
                 Pasien.COLUMN_TINGGI + " NUMERIC, " +
@@ -49,6 +51,7 @@ public class PasienTable {
         ContentValues values = new ContentValues();
         values.put(Pasien.COLUMN_NAMA, data.getNama());
         values.put(Pasien.COLUMN_TANGGAL, data.getTanggal());
+        values.put(Pasien.COLUMN_KELAMIN, data.getKelamin());
         values.put(Pasien.COLUMN_UMUR, data.getUmur());
         values.put(Pasien.COLUMN_BB, data.getBb());
         values.put(Pasien.COLUMN_TINGGI, data.getTinggi());
@@ -72,6 +75,8 @@ public class PasienTable {
         // Inserting Row
         pasienId = (int)db.insert(Pasien.TABLE, null, values);
         DatabaseManager.getInstance().closeDatabase();
+
+        Log.d("data", "INSERT DATA ===> " + values.toString());
 
         return pasienId;
     }
@@ -120,6 +125,7 @@ public class PasienTable {
                 data.setPasienId(cursor.getString(cursor.getColumnIndex(Pasien.COLUMN_ID)));
                 data.setNama(cursor.getString(cursor.getColumnIndex(Pasien.COLUMN_NAMA)));
                 data.setTanggal(cursor.getLong(cursor.getColumnIndex(Pasien.COLUMN_TANGGAL)));
+                data.setKelamin(cursor.getString(cursor.getColumnIndex(Pasien.COLUMN_KELAMIN)));
                 data.setUmur(cursor.getInt(cursor.getColumnIndex(Pasien.COLUMN_UMUR)));
                 data.setBb(cursor.getInt(cursor.getColumnIndex(Pasien.COLUMN_BB)));
                 data.setTinggi(cursor.getInt(cursor.getColumnIndex(Pasien.COLUMN_TINGGI)));
@@ -164,6 +170,7 @@ public class PasienTable {
                 data.setNama(cursor.getString(cursor.getColumnIndex(Pasien.COLUMN_NAMA)));
                 data.setTanggal(cursor.getLong(cursor.getColumnIndex(Pasien.COLUMN_TANGGAL)));
                 data.setUmur(cursor.getInt(cursor.getColumnIndex(Pasien.COLUMN_UMUR)));
+                data.setKelamin(cursor.getString(cursor.getColumnIndex(Pasien.COLUMN_KELAMIN)));
                 data.setBb(cursor.getInt(cursor.getColumnIndex(Pasien.COLUMN_BB)));
                 data.setTinggi(cursor.getInt(cursor.getColumnIndex(Pasien.COLUMN_TINGGI)));
                 data.setKeluhan(cursor.getString(cursor.getColumnIndex(Pasien.COLUMN_KELUHAN)));

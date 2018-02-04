@@ -8,6 +8,7 @@ public class Pasien {
     public static final String COLUMN_NAMA = "nama";
     public static final String COLUMN_TANGGAL = "tanggal";
     public static final String COLUMN_UMUR = "umur";
+    public static final String COLUMN_KELAMIN = "jenis_kelamin";
     public static final String COLUMN_BB = "bb";
     public static final String COLUMN_TINGGI = "tinggi";
     public static final String COLUMN_KELUHAN = "keluhan";
@@ -31,6 +32,7 @@ public class Pasien {
     private String nama;
     private long tanggal;
     private int umur;
+    private String kelamin;
     private int bb;
     private int tinggi;
     private String keluhan;
@@ -52,13 +54,14 @@ public class Pasien {
 
     public Pasien() {}
 
-    public Pasien(String pasienId, String nama, long tanggal, int umur, int bb, int tinggi, String keluhan,
+    public Pasien(String pasienId, String nama, long tanggal, int umur, String jenisKelamin, int bb, int tinggi, String keluhan,
                   int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11,
                   String kelas_penyakit, String kelas_kmeans, int detak_jantung, String kondisi_jantung) {
         this.pasienId = pasienId;
         this.nama = nama;
         this.tanggal = tanggal;
         this.umur = umur;
+        this.kelamin = jenisKelamin;
         this.bb = bb;
         this.tinggi = tinggi;
         this.keluhan = keluhan;
@@ -106,6 +109,10 @@ public class Pasien {
     public int getUmur() {
         return umur;
     }
+
+    public void setKelamin(String kelamin){ this.kelamin = kelamin; }
+
+    public String getKelamin() { return this.kelamin; }
 
     public void setUmur(int umur) {
         this.umur = umur;
