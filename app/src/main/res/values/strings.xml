@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Klasisifikasi Jantungan</string>
+    <string name="app_name">Klasisifikasi Penyakit Jantung</string>
     <string name="title_activity_menu_pasien">MenuPasien</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
