@@ -9,15 +9,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import erris.pulsesensor.database.PasienTable;
 import erris.pulsesensor.kmeans.Kmeans;
@@ -26,11 +30,14 @@ import erris.pulsesensor.models.Pasien;
 public class TambahPasien extends AppCompatActivity {
     Context context = this;
 
-    EditText txtNama, txtUmur, txtTinggi, txtBB, txtKeluhan;
+    EditText txtNama, txtUmur, txtTinggi, txtBB;
+    Spinner txtKeluhan;
     CheckBox chkX1, chkX2, chkX3, chkX4, chkX5, chkX6, chkX7, chkX8, chkX9, chkX10, chkX11;
     RadioGroup kelamin;
     RadioButton laki, perempuan;
     Button btnSimpan, btnHapus;
+    ArrayList<String> keluhanList;
+    GridLayout contentKeluhan;
 
     int id;
     int nilai_pjk, nilai_pja;
@@ -58,7 +65,8 @@ public class TambahPasien extends AppCompatActivity {
         txtUmur.setText(String.valueOf(pasien.getUmur()));
         txtTinggi.setText(String.valueOf(pasien.getTinggi()));
         txtBB.setText(String.valueOf(pasien.getBb()));
-        txtKeluhan.setText(pasien.getKeluhan());
+//        txtKeluhan.setText(pasien.getKeluhan());
+        txtKeluhan.setSelection(keluhanList.indexOf(pasien.getKeluhan()));
 
         if ( pasien.getX1() == 1 )
             chkX1.setChecked(true);
@@ -89,22 +97,54 @@ public class TambahPasien extends AppCompatActivity {
         txtUmur    = (EditText) findViewById(R.id.txtUmurPasien);
         txtTinggi  = (EditText) findViewById(R.id.txtTinggiPasien);
         txtBB      = (EditText) findViewById(R.id.txtBbPasien);
-        txtKeluhan = (EditText) findViewById(R.id.txtKeluhanPasien);
+        txtKeluhan = (Spinner) findViewById(R.id.txtKeluhanPasien);
         kelamin = (RadioGroup) findViewById(R.id.kelamin);
         laki = (RadioButton) findViewById(R.id.laki);
         perempuan = (RadioButton) findViewById(R.id.perempuan);
 
-        chkX1     = (CheckBox) findViewById(R.id.chkX1);
-        chkX2     = (CheckBox) findViewById(R.id.chkX2);
-        chkX3     = (CheckBox) findViewById(R.id.chkX3);
-        chkX4     = (CheckBox) findViewById(R.id.chkX4);
-        chkX5     = (CheckBox) findViewById(R.id.chkX5);
-        chkX6     = (CheckBox) findViewById(R.id.chkX6);
-        chkX7     = (CheckBox) findViewById(R.id.chkX7);
-        chkX8     = (CheckBox) findViewById(R.id.chkX8);
-        chkX9     = (CheckBox) findViewById(R.id.chkX9);
-        chkX10    = (CheckBox) findViewById(R.id.chkX10);
-        chkX11    = (CheckBox) findViewById(R.id.chkX11);
+        chkX1 = new CheckBox(context);
+        chkX2 = new CheckBox(context);
+        chkX3 = new CheckBox(context);
+        chkX4 = new CheckBox(context);
+        chkX5 = new CheckBox(context);
+        chkX6 = new CheckBox(context);
+        chkX7 = new CheckBox(context);
+        chkX8 = new CheckBox(context);
+        chkX9 = new CheckBox(context);
+        chkX10 = new CheckBox(context);
+        chkX11 = new CheckBox(context);
+
+        keluhanList = new ArrayList<String>();
+        keluhanList.add("Merokok");
+        keluhanList.add("Diabetes");
+        keluhanList.add("Dislipidemia");
+        keluhanList.add("Hipertensi");
+
+        ArrayAdapter adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, keluhanList);
+        txtKeluhan.setAdapter(adapter);
+
+        contentKeluhan = (GridLayout) findViewById(R.id.contentKeluhan);
+
+        chkX4 = new CheckBox(context);
+        chkX4.setText("Napas Terasa Berat");
+        contentKeluhan.addView(chkX4);
+
+        chkX2 = new CheckBox(context);
+        chkX2.setText("Napas Terengah-engah");
+        contentKeluhan.addView(chkX2);
+
+
+//        chkX1     = (CheckBox) findViewById(R.id.chkX1);
+//        chkX2     = (CheckBox) findViewById(R.id.chkX2);
+//        chkX3     = (CheckBox) findViewById(R.id.chkX3);
+//        chkX4     = (CheckBox) findViewById(R.id.chkX4);
+//        chkX5     = (CheckBox) findViewById(R.id.chkX5);
+//        chkX6     = (CheckBox) findViewById(R.id.chkX6);
+//        chkX7     = (CheckBox) findViewById(R.id.chkX7);
+//        chkX8     = (CheckBox) findViewById(R.id.chkX8);
+//        chkX9     = (CheckBox) findViewById(R.id.chkX9);
+//        chkX10    = (CheckBox) findViewById(R.id.chkX10);
+//        chkX11    = (CheckBox) findViewById(R.id.chkX11);
 
         laki.setChecked(true);
 
@@ -116,6 +156,56 @@ public class TambahPasien extends AppCompatActivity {
 
         btnSimpan.setOnClickListener(new ButtonSimpanListener());
         btnHapus.setOnClickListener(new ButtonHapusListener());
+        txtKeluhan.setOnItemSelectedListener(new KeluhanChangeListener());
+    }
+
+    private class KeluhanChangeListener implements AdapterView.OnItemSelectedListener{
+        @Override
+        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            contentKeluhan.removeAllViews();
+            switch(position){
+                case 0:{
+                    chkX4 = new CheckBox(context);
+                    chkX4.setText("Napas Terasa Berat");
+                    contentKeluhan.addView(chkX4);
+
+                    chkX2 = new CheckBox(context);
+                    chkX2.setText("Napas Terengah-engah");
+                    contentKeluhan.addView(chkX2);
+                    break;
+                }
+                case 1:{
+                    chkX10 = new CheckBox(context);
+                    chkX10.setText("Diabetes");
+                    contentKeluhan.addView(chkX10);
+                    break;
+                }
+                case 2:{
+                    chkX11 = new CheckBox(context);
+                    chkX11.setText("Kolesterol Tinggi");
+                    contentKeluhan.addView(chkX11);
+                    break;
+                }
+                case 3:{
+                    chkX7 = new CheckBox(context);
+                    chkX7.setText("Kecemasan");
+                    contentKeluhan.addView(chkX7);
+
+                    chkX6 = new CheckBox(context);
+                    chkX6.setText("Kecemasan");
+                    contentKeluhan.addView(chkX6);
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parentView) {
+            // your code here
+        }
     }
 
     private class ButtonSimpanListener implements View.OnClickListener {
@@ -127,7 +217,7 @@ public class TambahPasien extends AppCompatActivity {
                 pasienTable.delete(id);
             }
 
-            if ( txtNama.getText().toString().equals("") || txtUmur.getText().toString().equals("") || txtTinggi.getText().toString().equals("") || txtBB.getText().toString().equals("") || txtKeluhan.getText().toString().equals("") ) {
+            if ( txtNama.getText().toString().equals("") || txtUmur.getText().toString().equals("") || txtTinggi.getText().toString().equals("") || txtBB.getText().toString().equals("") || txtKeluhan.getSelectedItem().toString().equals("") ) {
                 Toast.makeText(getBaseContext(), "Silahkan lengkapi form terlebih dahulu", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -142,7 +232,7 @@ public class TambahPasien extends AppCompatActivity {
             String jenisKelamin = "";
             int tinggi     = Integer.valueOf(txtTinggi.getText().toString());
             int bb         = Integer.valueOf(txtBB.getText().toString());
-            String keluhan = txtKeluhan.getText().toString();
+            String keluhan = txtKeluhan.getSelectedItem().toString();
 
             if(laki.isChecked()){
                 jenisKelamin = "L";
