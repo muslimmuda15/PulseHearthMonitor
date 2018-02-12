@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class TambahPasien extends AppCompatActivity {
     Button btnSimpan, btnHapus;
     ArrayList<String> keluhanList;
     GridLayout contentKeluhan;
+    TableLayout contentAllKeluhan;
 
     int id;
     int nilai_pjk, nilai_pja;
@@ -115,6 +117,7 @@ public class TambahPasien extends AppCompatActivity {
         chkX11 = new CheckBox(context);
 
         keluhanList = new ArrayList<String>();
+        keluhanList.add("Pilih salah satu");
         keluhanList.add("Merokok");
         keluhanList.add("Diabetes");
         keluhanList.add("Dislipidemia");
@@ -124,27 +127,31 @@ public class TambahPasien extends AppCompatActivity {
         txtKeluhan.setAdapter(adapter);
 
         contentKeluhan = (GridLayout) findViewById(R.id.contentKeluhan);
+        contentAllKeluhan = (TableLayout) findViewById(R.id.contentAllKeluhan);
 
-        chkX4 = new CheckBox(context);
-        chkX4.setText("Napas Terasa Berat");
-        contentKeluhan.addView(chkX4);
+        contentKeluhan.setVisibility(GridLayout.GONE);
+        contentAllKeluhan.setVisibility(TableLayout.VISIBLE);
 
-        chkX2 = new CheckBox(context);
-        chkX2.setText("Napas Terengah-engah");
-        contentKeluhan.addView(chkX2);
+//        chkX4 = new CheckBox(context);
+//        chkX4.setText("Napas Terasa Berat");
+//        contentKeluhan.addView(chkX4);
+//
+//        chkX2 = new CheckBox(context);
+//        chkX2.setText("Napas Terengah-engah");
+//        contentKeluhan.addView(chkX2);
 
 
-//        chkX1     = (CheckBox) findViewById(R.id.chkX1);
-//        chkX2     = (CheckBox) findViewById(R.id.chkX2);
-//        chkX3     = (CheckBox) findViewById(R.id.chkX3);
-//        chkX4     = (CheckBox) findViewById(R.id.chkX4);
-//        chkX5     = (CheckBox) findViewById(R.id.chkX5);
-//        chkX6     = (CheckBox) findViewById(R.id.chkX6);
-//        chkX7     = (CheckBox) findViewById(R.id.chkX7);
-//        chkX8     = (CheckBox) findViewById(R.id.chkX8);
-//        chkX9     = (CheckBox) findViewById(R.id.chkX9);
-//        chkX10    = (CheckBox) findViewById(R.id.chkX10);
-//        chkX11    = (CheckBox) findViewById(R.id.chkX11);
+        chkX1     = (CheckBox) findViewById(R.id.chkX1);
+        chkX2     = (CheckBox) findViewById(R.id.chkX2);
+        chkX3     = (CheckBox) findViewById(R.id.chkX3);
+        chkX4     = (CheckBox) findViewById(R.id.chkX4);
+        chkX5     = (CheckBox) findViewById(R.id.chkX5);
+        chkX6     = (CheckBox) findViewById(R.id.chkX6);
+        chkX7     = (CheckBox) findViewById(R.id.chkX7);
+        chkX8     = (CheckBox) findViewById(R.id.chkX8);
+        chkX9     = (CheckBox) findViewById(R.id.chkX9);
+        chkX10    = (CheckBox) findViewById(R.id.chkX10);
+        chkX11    = (CheckBox) findViewById(R.id.chkX11);
 
         laki.setChecked(true);
 
@@ -165,34 +172,47 @@ public class TambahPasien extends AppCompatActivity {
             contentKeluhan.removeAllViews();
             switch(position){
                 case 0:{
-                    chkX4 = new CheckBox(context);
-                    chkX4.setText("Napas Terasa Berat");
-                    contentKeluhan.addView(chkX4);
-
-                    chkX2 = new CheckBox(context);
-                    chkX2.setText("Napas Terengah-engah");
-                    contentKeluhan.addView(chkX2);
+                    contentKeluhan.setVisibility(GridLayout.GONE);
+                    contentAllKeluhan.setVisibility(TableLayout.VISIBLE);
                     break;
                 }
                 case 1:{
+                    contentKeluhan.setVisibility(GridLayout.VISIBLE);
+                    contentAllKeluhan.setVisibility(TableLayout.GONE);
+                    chkX4 = new CheckBox(context);
+                    chkX4.setText("Napas Berat");
+                    contentKeluhan.addView(chkX4);
+
+                    chkX2 = new CheckBox(context);
+                    chkX2.setText("Terengah-engah");
+                    contentKeluhan.addView(chkX2);
+                    break;
+                }
+                case 2:{
+                    contentKeluhan.setVisibility(GridLayout.VISIBLE);
+                    contentAllKeluhan.setVisibility(TableLayout.GONE);
                     chkX10 = new CheckBox(context);
                     chkX10.setText("Diabetes");
                     contentKeluhan.addView(chkX10);
                     break;
                 }
-                case 2:{
+                case 3:{
+                    contentKeluhan.setVisibility(GridLayout.VISIBLE);
+                    contentAllKeluhan.setVisibility(TableLayout.GONE);
                     chkX11 = new CheckBox(context);
                     chkX11.setText("Kolesterol Tinggi");
                     contentKeluhan.addView(chkX11);
                     break;
                 }
-                case 3:{
+                case 4:{
+                    contentKeluhan.setVisibility(GridLayout.VISIBLE);
+                    contentAllKeluhan.setVisibility(TableLayout.GONE);
                     chkX7 = new CheckBox(context);
                     chkX7.setText("Kecemasan");
                     contentKeluhan.addView(chkX7);
 
                     chkX6 = new CheckBox(context);
-                    chkX6.setText("Kecemasan");
+                    chkX6.setText("Palpitasi");
                     contentKeluhan.addView(chkX6);
                     break;
                 }
